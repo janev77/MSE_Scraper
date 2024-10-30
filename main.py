@@ -16,7 +16,7 @@ def fetch_issuer_names(url):
     dropdown = soup.find('select', class_='form-control')
 
     if not dropdown:
-        print("No dropdown found.")
+        print("No dropdown found!")
         return []
 
     # Extract and filter issuer names
@@ -53,8 +53,8 @@ def print_first_two_columns(url, start_date, end_date):
     to_date.clear()
     to_date.send_keys(end_date)
 
-    search_button = driver.find_element(By.ID, "submitButton")  # прилагоди го ID ако е различен
-    search_button.click()
+    #search_button = driver.find_element(By.ID, "submitButton")  # прилагоди го ID ако е различен
+    #search_button.click()
     driver.quit()
 
 
@@ -68,6 +68,7 @@ def main():
         for name in issuer_names:
             print(name)
         save_to_csv(issuer_names)
+        print_first_two_columns("https://www.mse.mk/mk/stats/symbolhistory/KMB","01.01.2024","30.10.2024")
 
 
 if __name__ == '__main__':

@@ -1,0 +1,1 @@
+Macedonian Stock Exchange Scraper
