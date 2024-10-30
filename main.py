@@ -15,7 +15,7 @@ def fetch_issuer_names(url):
     dropdown = soup.find('select', class_='form-control')
 
     if not dropdown:
-        print("No dropdown found.")
+        print("No dropdown found!")
         return []
 
     # Extract and filter issuer names
