@@ -1,3 +1,5 @@
+import time
+
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -53,8 +55,25 @@ def print_first_two_columns(url, start_date, end_date):
     to_date.clear()
     to_date.send_keys(end_date)
 
-    #search_button = driver.find_element(By.ID, "submitButton")  # прилагоди го ID ако е различен
-    #search_button.click()
+    search_button = driver.find_element(By.CSS_SELECTOR, ".btn.btn-primary-sm")
+    search_button.click()
+    time.sleep(15)
+
+
+    results_table = driver.find_element(By.ID, "resultsTable")
+
+    # Пронајди ги сите редови во табелата
+    rows = results_table.find_elements(By.TAG_NAME, "tr")
+
+    # Прочитај првите две колони од секој ред (освен насловниот ред)
+    for row in rows[1:]:
+        cells = row.find_elements(By.TAG_NAME, "td")
+        if len(cells) >= 2:
+            col1 = cells[0].text
+            col2 = cells[1].text
+            print(f"Колона 1: {col1}, Колона 2: {col2}")
+
+
     driver.quit()
 
 
